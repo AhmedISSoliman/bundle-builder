@@ -1,5 +1,7 @@
 # Bundle Builder
 
+**Test ID: 41091** — Frontend Take-Home (React)
+
 A multi-step **bundle builder** with a **live review panel** beside it. Shoppers
 assemble a home-security system through a 4-step accordion (cameras → plan →
 sensors → extra protection) while a "Your security system" panel updates live
@@ -83,7 +85,7 @@ public/
 ### Data-driven rendering
 
 Everything renders from `src/data/bundle-products.json`: the steps, the products
-(title, description, image, badge, price, compare-at price, variants + per-color
+(title, description, image, price, compare-at price, variants + per-color
 images), the seed quantities/active variants, and all review-panel copy
 (shipping, financing, guarantee text). Adding or changing a product is a JSON
 edit — no component changes required.
@@ -121,9 +123,9 @@ A product counts as "selected" (highlighted border) when **any** of its variants
 has quantity > 0. The "N selected" indicator counts **distinct products**, so a
 product with two selected colours still counts once.
 
-Color chips show a small product photo per colour. The card's main image stays
-the original product photo until the shopper **actually picks a colour**, then
-switches to that colour's image — and updates on every change after that.
+Color chips show a small product photo per colour. The card's main image always
+reflects the **currently selected** colour (white by default) and switches the
+moment another chip is picked.
 
 ### Accordion + counters
 
@@ -149,6 +151,10 @@ subtotal, compare-at total, and savings. Totals recalculate immediately on any
 quantity change. With the seeded configuration the panel shows
 **total $217.81**, pre-discount **$238.81**, **savings $21.00**.
 
+The "Save X%" badge is **computed** from each product's own prices —
+`round((compareAt − price) / compareAt)` — so the percentage can never disagree
+with the line pricing or the savings total.
+
 ### Responsiveness
 
 Desktop is a two-column layout (builder + sticky review rail). The builder cards
@@ -157,7 +163,9 @@ panel stacks beneath the builder at ≤980px. The review rows use **CSS containe
 queries**, so they respond to the *panel's* width (not the viewport) — that
 keeps long product names and the `/mo` plan price from colliding when the panel
 is a narrow rail (e.g. at ~1024px). A viewport-based fallback covers browsers
-without container-query support. No horizontal scrolling at any width.
+without container-query support. No horizontal scrolling at any width. On large
+screens (≥1200px) a step with an odd number of cards centers its lone last card,
+matching the design (e.g. the 5th camera in step 1).
 
 ---
 
