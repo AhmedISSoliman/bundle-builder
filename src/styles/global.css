@@ -1,0 +1,89 @@
+/* Gilroy — real font files in /public/fonts (free Light + ExtraBold weights).
+   The design also uses Gilroy Medium/SemiBold (paid weights, not bundled); body
+   text falls back to Inter, headings use Gilroy ExtraBold. */
+@font-face {
+  font-family: "Gilroy";
+  src: url("/fonts/Gilroy-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gilroy";
+  src: url("/fonts/Gilroy-ExtraBold.otf") format("opentype");
+  font-weight: 700 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  font-size: var(--fs-base);
+  color: var(--color-text);
+  background: #fbfbfd;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.45;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Accessibility: visible focus rings for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

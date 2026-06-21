@@ -1,0 +1,126 @@
+/* Open step sits on a light-blue rounded panel (matches the design). */
+.open {
+  background: var(--color-panel);
+  border-top: none;
+  border-radius: var(--radius-lg);
+  padding: var(--space-1) var(--space-5) var(--space-4);
+}
+
+.headerHeading {
+  margin: 0;
+  font: inherit;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  /* Full-width divider line under every step header. */
+  border-bottom: 1px solid rgba(11, 13, 16, 0.08);
+  text-align: left;
+  padding: var(--space-5) var(--space-2);
+}
+
+/* A touch more breathing room under the open step's header before the cards. */
+.open .header {
+  margin-bottom: var(--space-2);
+}
+
+.stepIndex {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+}
+
+.headerMain {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.icon {
+  display: inline-flex;
+  color: var(--color-ink);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.state {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.count {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.countMuted {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+}
+
+.chevron {
+  color: var(--color-primary);
+}
+
+.panel {
+  padding: 0 var(--space-2) var(--space-6);
+}
+
+.grid {
+  display: grid;
+  /* Fills the builder column regardless of layout width (cards wrap naturally). */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-4);
+}
+
+.nextRow {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-6);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 520px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .title {
+    font-size: var(--fs-md);
+  }
+  .header {
+    padding: var(--space-4) var(--space-1);
+  }
+  .open {
+    padding: var(--space-1) var(--space-3) var(--space-3);
+    /* margin: var(--space-2) 0; */
+  }
+  .nextRow :global(button) {
+    width: 100%;
+  }
+}
+
+/* Desktop two-column grid: when a step has an odd number of cards (e.g. the 5
+   cameras), the lone last card sits alone on the final row — center it across
+   the two columns at normal card width, matching the design. */
+@media (min-width: 1200px) {
+  .grid > :last-child:nth-child(odd):not(:first-child) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc(50% - var(--space-4) / 2);
+  }
+}

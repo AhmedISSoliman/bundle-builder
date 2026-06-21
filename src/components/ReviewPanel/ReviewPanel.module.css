@@ -1,0 +1,160 @@
+.panel {
+  background: var(--color-panel);
+  border-radius: var(--radius-lg);
+  position: sticky;
+  top: var(--space-5);
+}
+
+.inner {
+  padding: var(--space-6);
+  /* Items below respond to THIS panel's width, not the viewport. */
+  container-type: inline-size;
+  container-name: reviewpanel;
+}
+
+.head {
+  margin-bottom: var(--space-4);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: 800;
+  color: var(--color-ink);
+}
+
+.subtitle {
+  margin-top: var(--space-2);
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+}
+
+.group + .group {
+  border-top: 1px solid rgba(11, 13, 16, 0.06);
+}
+
+.groupTitle {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin: var(--space-3) 0 0;
+}
+
+.divider {
+  height: 1px;
+  background: rgba(11, 13, 16, 0.1);
+  margin: var(--space-2) 0;
+}
+
+/* ---- Summary ---- */
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  border-top: 1px solid rgba(11, 13, 16, 0.1);
+  padding-top: var(--space-4);
+}
+
+.guarantee {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+}
+
+.badge {
+  width: 64px;
+  height: 64px;
+  flex: none;
+}
+
+.guaranteeTitle {
+  font-size: var(--fs-base);
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.guaranteeText {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  margin-top: 2px;
+  line-height: 1.45;
+}
+
+.totals {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.financing {
+  display: inline-block;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+}
+
+.totalRow {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.totalCompare {
+  font-size: var(--fs-md);
+  color: var(--color-strike);
+  text-decoration: line-through;
+}
+
+.totalNow {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.savings {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--color-success);
+  text-align: center;
+}
+
+.saveLink {
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: var(--fs-sm);
+  font-style: italic;
+  text-decoration: underline;
+  text-align: center;
+  padding: var(--space-1);
+}
+
+.saveLink:hover {
+  color: var(--color-primary);
+}
+
+@media (max-width: 460px) {
+  .inner {
+    padding: var(--space-4);
+  }
+}

@@ -1,0 +1,116 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 2px solid var(--color-border);
+  border-radius: 5px;
+  padding: var(--space-4);
+  transition: border-color 0.15s ease, background 0.15s ease,
+    box-shadow 0.15s ease;
+  height: 100%;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-card);
+}
+
+/* Selected: white background + highlighted purple border (no fill). */
+.selected {
+  border-color: var(--color-card-selected-border);
+  background: var(--color-card-selected-bg);
+}
+
+.badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 10px;
+  z-index: 1;
+}
+
+/* Two-column layout: image on the left, text/variants on the right. */
+.top {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: var(--space-3);
+  align-items: start;
+  margin-top: var(--space-6);
+}
+
+.media {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.image {
+  max-width: 92px;
+  max-height: 118px;
+  width: auto;
+  object-fit: contain;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.description {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.learnMore {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: auto;
+  padding-top: var(--space-4);
+}
+
+.pricing {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.compareAt {
+  font-size: var(--fs-sm);
+  color: var(--color-sale);
+  text-decoration: line-through;
+}
+
+.price {
+  font-size: var(--fs-md);
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+/* Narrow cards (single-column builder on phones): keep it readable. */
+@media (max-width: 360px) {
+  .top {
+    grid-template-columns: 76px minmax(0, 1fr);
+  }
+}

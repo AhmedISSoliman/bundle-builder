@@ -1,0 +1,5 @@
+.builder {
+  /* No outer white card: the open step provides its own blue panel,
+     collapsed steps are plain rows separated by full-width dividers. */
+  padding: 0;
+}

@@ -1,0 +1,63 @@
+.stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-stepper-bg);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  color: var(--color-stepper-text);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.btn:hover:not(:disabled) {
+  background: #e6edf3;
+  color: var(--color-ink);
+}
+
+.btn:disabled {
+  color: var(--color-disabled);
+  background: var(--color-stepper-disabled-bg);
+  cursor: not-allowed;
+}
+
+/* Minus button: white background with a light grey border (per design). */
+.stepper .btn:first-child {
+  background: #fff;
+  border-color: #e6ebf0;
+}
+.stepper .btn:first-child:hover:not(:disabled) {
+  background: #fff;
+  border-color: var(--color-stepper-text);
+}
+
+.value {
+  min-width: 22px;
+  text-align: center;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-ink);
+}
+
+/* sizes */
+.md .btn {
+  width: 28px;
+  height: 28px;
+}
+.md .value {
+  font-size: var(--fs-base);
+}
+
+.sm .btn {
+  width: 24px;
+  height: 24px;
+}
+.sm .value {
+  font-size: var(--fs-sm);
+  min-width: 18px;
+}

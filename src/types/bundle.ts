@@ -1,0 +1,97 @@
+/**
+ * Domain types for the Bundle Builder.
+ * The whole UI is rendered from data shaped by these types.
+ */
+
+export type CategoryId = "Cameras" | "Sensors" | "Accessories" | "Plan";
+
+export type StepIconId = "camera" | "plan" | "sensor" | "shield" | "grid";
+
+export interface Variant {
+  /** Stable id, unique within the product (e.g. "white"). */
+  id: string;
+  /** Display label shown next to the swatch (e.g. "White"). */
+  label: string;
+  /** CSS color for the swatch dot. */
+  swatch: string;
+  /** Optional variant-specific image; falls back to product.image. */
+  image?: string;
+  /** Optional smaller image just for the color chip (falls back to image). */
+  chipImage?: string;
+}
+
+export interface Product {
+  id: string;
+  category: CategoryId;
+  title: string;
+  description?: string;
+  image: string;
+  /** Current (active) unit price. 0 means FREE. */
+  price: number;
+  /** Optional struck-through compare-at unit price. */
+  compareAtPrice?: number;
+  /** Per-month pricing flag (plans). Renders "/mo". */
+  perMonth?: boolean;
+  /** Optional "Learn More" target. Placeholder in this prototype. */
+  learnMoreUrl?: string;
+  /** Variants (color options). Omit/empty for single-variant products. */
+  variants?: Variant[];
+  /**
+   * Required products (e.g. Sense Hub) cannot be removed: the minus
+   * button is disabled and quantity is clamped to at least `minQuantity`.
+   */
+  required?: boolean;
+  minQuantity?: number;
+}
+
+export interface Step {
+  id: string;
+  stepNumber: number;
+  title: string;
+  icon: StepIconId;
+  /** Label for the Next button, e.g. "Next: Choose your plan". */
+  nextLabel?: string;
+  productIds: string[];
+}
+
+export interface ExtrasRow {
+  label: string;
+  price: number;
+  compareAtPrice?: number;
+  /** Render the value as the success-colored word "FREE". */
+  free?: boolean;
+}
+
+export interface BundleData {
+  steps: Step[];
+  products: Product[];
+  /** Initial selected quantities keyed by lineKey (`productId` or `productId:variantId`). */
+  seedQuantities: Record<string, number>;
+  /** Initial active variant per product. */
+  seedActiveVariants: Record<string, string>;
+  review: {
+    title: string;
+    subtitle: string;
+    /** Order of category subheadings in the review panel. */
+    categoryOrder: CategoryId[];
+    shipping: ExtrasRow;
+    financingNote: string;
+    guaranteeBadge: string;
+    guaranteeTitle: string;
+    guaranteeText: string;
+    checkoutLabel: string;
+    saveLabel: string;
+  };
+}
+
+/** Runtime line item derived from state + data for the review panel. */
+export interface SelectedLine {
+  lineKey: string;
+  product: Product;
+  variant?: Variant;
+  quantity: number;
+  unitPrice: number;
+  unitCompareAt: number;
+  lineTotal: number;
+  lineCompareAtTotal: number;
+}
